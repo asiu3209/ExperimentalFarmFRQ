@@ -14,9 +14,17 @@ public class ExperimentalFarm
      */
     public Plot getHighestYield(String c)
     {
-        /* to be implemented in part (a) */
-
-        return null; // stub value
+        Plot highest = null;
+        int largest = 0;
+        for (int i = 0; i<farmPlots.length;i++){
+            for (int j = 0;j<farmPlots[0].length;j++){
+                if (farmPlots[i][j].getCropType().equals(c) && farmPlots[i][j].getCropYield() >= largest){
+                    largest = farmPlots[i][j].getCropYield();
+                    highest = farmPlots[i][j];
+                }
+            }
+        }
+        return highest; // stub value
     }
 
     /** Returns true if all plots in a given column in
@@ -26,9 +34,14 @@ public class ExperimentalFarm
      */
     public boolean sameCrop(int col)
     {
-        /* to be implemented in part (b) */
+        String temp = farmPlots[0][col].getCropType();
+        for (int i = 1;i<farmPlots.length;i++){
+            if (!(farmPlots[i][col].getCropType().equals(temp))){
+                return false;
+            }
+        }
 
-        return false; // stub value
+        return true; // stub value
     }
 
     /** Returns an arraylist of Plots
@@ -37,8 +50,15 @@ public class ExperimentalFarm
      */
     public ArrayList<Plot> plotsWithCrop(String crop)
     {
-        /* to be implemented in part (c) */
+        ArrayList<Plot> temp = new ArrayList<Plot>();
+        for (int i = 0;i<farmPlots.length;i++){
+            for(int j = 0;j<farmPlots[0].length;j++){
+                if (farmPlots[i][j].getCropType().equals(crop)){
+                    temp.add(farmPlots[i][j]);
+                }
+            }
+        }
 
-        return new ArrayList<Plot>(); // stub value
+        return temp; // stub value
     }
 }
